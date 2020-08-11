@@ -1,0 +1,101 @@
+{{#section 'title'}}Đăng ký thành viên mới - {{/section}}
+{{#section 'js'}}
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<script type="text/javascript" language="javascript">
+
+    function isNumber(n) { return /^-?[\d.]+(?:e-?\d+)?$/.test(n); } 
+    function validate() {
+        return false;
+    }
+    function Check() {
+        var username = $('#txtUserName').val();
+        var pass = $('#txtPassword').val();
+        var cpass = $('#txtCPassword').val();
+        var phone = $('#txtPhone').val();
+        var pattern = /^[0-9]/;
+
+        if (username.length < 5) {
+            alert('Tên người dùng không được dưới 5 kí tự');
+            return false;
+        }
+        if (pass.length < 6) {
+            alert('Mật khẩu không được đặt dưới 6 kí tự');
+            return false;
+        }
+        if (pass !== cpass) {
+            alert('Mật khẩu xác nhận không khớp');
+            return false;
+        }
+        if (isNumber(phone) === false) {
+            alert('Vui lòng nhập lại đúng định dạng số điện thoại');
+            return false;
+        }
+        if (pattern.test(phone) === false) {
+            alert('Vui lòng nhập lại đúng định dạng số điện thoại');
+            return false;
+        }
+        
+ 
+        return true;
+    }
+</script>
+{{/section}}
+<div class="card">
+    <div class="card-header text-success"><h4>Đăng kí thành viên</h4></div>
+    <div class="card-body">
+        {{#if this.invalid_username}}
+            <div class="alert alert-danger" role="alert">Tên người dùng đã tồn tại</div>
+        {{/if}}
+        {{#if this.invalid_mail}}
+            <div class="alert alert-danger" role="alert">Email này đã tồn tại</div>
+        {{/if}}
+        {{#if this.invalid_phone}}
+            <div class="alert alert-danger" role="alert">Số điện thoại này đã tồn tại</div>
+        {{/if}}
+        <form method="POST" action="" id="frmRegister">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Tên người dùng</label>
+                    <input type="text" class="form-control {{#if this.invalid_username}}is-invalid{{/if}}" id="txtUserName" name="username" value="{{this.info.username}}" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="txtEmail">Email</label>
+                    <input type="email" class="form-control {{#if this.invalid_mail}}is-invalid{{/if}}" id="txtEmail" name="email" value="{{this.info.email}}" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="txtPassword">Mật khẩu</label>
+                    <input type="password" class="form-control" id="txtPassword" name="password" value="{{this.info.password}}" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="txtCPassword">Xác nhận mật khẩu</label>
+                    <input type="password" class="form-control" id="txtCPassword" name="cpassword" value="{{this.info.cpassword}}" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-7">
+                    <label for="txtFullname">Họ tên</label>
+                    <input type="text" class="form-control" id="txtFullname" name="fullname" value="{{this.info.fullname}}" required>
+                </div>
+                <div class="form-group col-md-5">
+                   <label for="txtPhone">Số điện thoại</label>
+                    <input type="phone" class="form-control {{#if this.invalid_phone}}is-invalid{{/if}}" id="txtPhone" name="phone" value="{{this.info.phone}}" required >
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="txtAddress">Địa chỉ</label>
+                <input type="text" class="form-control" id="txtAddress" name="address" value="{{this.info.address}}" required>
+            </div>
+            <div class="form-group">
+                <label for="txtDOB">Ngày sinh</label>
+                <input type="date" class="form-control" id="txtDOB" name="dob" value="{{this.info.dob}}" required>
+            </div>
+            <a href="/" class="btn btn-danger"><i class="fas fa-backward"></i></a>
+            <button type="submit" id="cbtn" class="btn btn-primary" onclick="return Check()">
+                <i class="fas fa-user-plus"></i> Đăng ký 
+            </button> 
+        </form>
+    </div>
+</div>

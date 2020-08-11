@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
+    {{{_sections.css}}}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/public/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="shortcut icon" href="/public/images/favicon.ico"/>
+    <title>{{{_sections.title}}}TTC News</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</head>
+<body>
+
+    <div class="container" ><div class="row">
+    <div class="col-sm-2 text-center">
+    <a href="/"><img src="/public/images/logo2.PNG" width="150px" height="70px"></a>
+    </div>
+    <div class="col-sm-6" style="margin: auto;">
+    <center>
+    <form class="form-inline" action="/action_page.php">
+    <input class="form-control mr-sm-2" type="text" placeholder="Search" style="
+    width: 426px;">    
+    <button class="btn btn-success" type="submit"><i class="fas fa-search"></i></button>
+    </form>
+    </center></div>
+    <div class="col-sm-3 text-right" style="margin: auto;">
+    {{#if lcIsAuthenticated}}     
+        <div class="btn-group">
+            <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-user"> {{lcAuthUser.UserName}}</i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="/profile"><i class="far fa-address-card"></i> Cá nhân</a>
+                {{#if lcWriter}}
+                    <a class="dropdown-item" href="/writerpanel"><i class="fas fa-user-cog"></i> Writer Panel</a>
+                {{/if}}
+                {{#if lcEditor}}
+                    <a class="dropdown-item" href="/editorpanel"><i class="fas fa-user-cog"></i> Editor Panel</a>
+                {{/if}}
+                {{#if lcAdmin}}
+                    <a class="dropdown-item" href="/admin"><i class="fas fa-user-cog"></i> Admin Panel</a>
+                {{/if}}
+                <a href="/dangxuat" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+
+            </div>
+        </div>
+    {{else}}
+        <a href="/dangky" class="btn btn-light border text-secondary"><i class="fas fa-user-plus"></i> Đăng ký</a>
+        <a href="/dangnhap" class="btn btn-light border text-secondary"><i class="fas fa-user"></i> Đăng nhập</a>
+    {{/if}}
+    </div>
+    
+    </div>
+      </div> 
+
+    <div class="sticky-top" style="z-index: 3;">
+    <nav class="navbar navbar-dark bg-success" style="
+    padding: 0px 137px 0px 137px;
+    margin-left: 0px;">
+        <div id="menu">
+            <ul>
+            <li>
+                <a href="/post/hot">NÓNG</a>
+            </li>
+            <li>
+                <a href="/post/new">MỚI</a>
+            </li>
+            <li>
+                <a href="#">CHỦ ĐỀ</a>
+            </li>
+            </ul>
+        </div>
+        
+        <button class="navbar-toggler " type="button" data-toggle="dropdown" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+    <div class="collapse" id="navbarToggleExternalContent">
+    <div class="shadow-sm p-4 bg-light "><div class="container">
+                <div class="row">
+
+        {{#each lcCategories}}
+            <div class="col-sm-2" style="{{xd}} margin-right: 30px">
+                <div class="text-success chuyenmuc"><a href="/cat/{{CID}}" class="text-success">{{CName}}</a></div>
+                    {{#each subcategories}}
+                    <div class="subcate">
+                        <a href="/subcat/{{SCID}}" class="text-dark">{{SCName}}</a>
+                    </div>
+                    {{/each}}
+            </div>
+            <div class="trong"></div>
+        {{/each}}   
+             </div> 
+
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+   
+    <div class="container">
+    <div class="khoangtrang"></div>
+    {{{body}}}
+    <div style="margin-top: 30px;"></div>
+   
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    {{{_sections.js}}}
+</body>
+</html>

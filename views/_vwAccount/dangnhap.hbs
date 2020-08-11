@@ -1,0 +1,36 @@
+{{#section 'title'}}Đăng nhập - {{/section}}
+
+<div class="card">
+    <div class="card-header text-success">
+        <h5>Đăng nhập</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-6 border-right" style="padding-left: 30px; padding-right: 30px;">
+                <form method="POST">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="txtUserName" name="username" placeholder="Tên người dùng hoặc email">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="txtPassword" name="password" placeholder="Mật khẩu">
+                    </div>
+                    <div class="form-group text-right">
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-user"></i> Đăng nhập </button>                     
+                    </div>
+                    <div class="form-group text-right">
+                        <a href='/quenmatkhau'>Quên mật khẩu?</a><br/>
+                        <span class="text-info">Không có tài khoản? </span><a href='/dangky'>Đăng ký</a>
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-6 text-center" style="padding-left: 70px; padding-right: 70px;">
+                <div class="form-group ">
+                    <a href="/loginfb"><button class="btn btn-primary btn-block"><i class="fab fa-facebook"></i> Đăng nhập bằng Facebook</button></a>
+                </div>
+                <div class="form-group">
+                    <a href="/logingoogle"><button class="btn btn-info btn-block"><i class="fab fa-google"></i> Đăng nhập bằng Google</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
