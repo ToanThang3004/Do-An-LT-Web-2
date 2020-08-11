@@ -1,0 +1,33 @@
+{{#section 'title'}}Thêm chuyên mục - {{/section}}
+<div class="row">
+    <div class="col-sm-3">
+        <div class="card ">
+            <div class="card-header bg-success text-light">Admin Panel</div>
+            <div class="card-body">
+                <a href="/admin/categories"><i class="fas fa-arrow-circle-right"> Quản lý chuyên mục</i> </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-9">
+        <div class="card">
+            <div class="card-header bg-success text-light">
+                <h5>Thêm chuyên mục lớn </h5>
+            </div>
+        <div class="card-body">
+            <form method="POST" action="">
+            <div class="form-group">
+                <input type="text" class="form-control" id="txtCName" name="CName" autofocus>
+            </div>
+            <a class="btn btn-success" href="/admin/categories" role="button" title="Back to List">
+                <i class="fa fa-backward" aria-hidden="true"></i>
+            </a>
+            <button type="submit" class="btn btn-primary">
+                <i class="fa fa-check" aria-hidden="true"></i>
+                Thêm
+            </button>
+            </form>
+        </div>
+        </div>
+     
+    </div>
+</div>
