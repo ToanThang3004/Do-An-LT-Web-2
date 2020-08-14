@@ -1,0 +1,47 @@
+<div class="card">
+    <div class="card-header text-success">
+        <p>Kiểm duyệt bài <a class="text-success" href="/admin/posts/{{this.post.PostID}}">
+        <strong>{{this.post.PostTitle}}</strong></a></p>
+        Chuyên mục hiện tại: 
+        <strong><a href="/admin/posts/cat/{{this.cate_post.CID}}" class="text-success">
+        {{this.cate_post.CName}}</a></strong> /    
+        <strong><a href="admin/posts/subcat/{{this.sub_post.SCID}}" class="text-success">
+        {{this.sub_post.SCName}}</a></strong>
+    </div>
+    <div class="card-header">
+        Chọn trạng thái
+    </div>
+    <div class="card-body">
+   
+                <form method="POST">
+<div class="input-group">
+  <div class="input-group-prepend">
+    <div class="input-group-text">
+      <input type="radio" id="1" name="Duyet" value="1"> 
+                  &nbsp;Từ chối
+
+    </div>
+  </div>
+  <input type="text" class="form-control" placeholder="Lí do từ chối"  id="txtReason" name="Reason">
+  
+</div>
+<p></p>
+<div class="input-group">
+  <div class="input-group-prepend">
+    <div class="input-group-text">
+      <input type="radio" id="2" name="Duyet" value="2"> 
+                  &nbsp;Duyệt bài và nhập thời gian xuất bản bài
+
+    </div>
+  </div>
+  <input type="datetime-local" class="form-control" placeholder="Nhập thời gian xuất bản"  id="txtTimePublic" name="TimePublic">
+  
+</div>
+            <p></p>
+                        <input class="btn btn-success" type="submit" value="Lưu">
+
+        </form>
+
+        
+    </div>
+</div>

@@ -1,0 +1,99 @@
+{{#section 'title'}}Quản lý bài đăng - {{/section}}
+
+<div class="row">
+    <div class="col-sm-3">
+        <div class="card">
+            <div class="card-header bg-success text-light">Admin Panel</div>
+            <div class="list-group">
+                <a href="/admin/categories" class="list-group-item list-group-item-action" ><i class="fas fa-arrow-circle-right"> Quản lý chuyên mục</i> 
+</a>
+            </div>
+        </div>
+        <div style="margin-bottom: 10px;"></div>
+    <div class="card">
+            <div class="card-header bg-success text-light">Xem bài theo chuyên mục</div>
+            <div class="list-group">
+                {{#if this.empty}} 
+                    <div class="card-body">Không có chuyên mục nào</div>
+                {{else}}
+                {{#each this.list}}
+                {{#if CName}}
+                <a href="/admin/posts/cat/{{CID}}" class="list-group-item list-group-item-action" ><i class="fab fa-buffer"> {{CName}}</i></a>
+                {{else}}
+                <a href="/admin/posts/subcat/{{SCID}}" class="list-group-item list-group-item-action" ><i class="fab fa-buffer"> {{SCName}}</i></a>
+                {{/if}}
+                {{/each}}
+                {{/if}}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-9">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between bg-success text-light">
+                {{#if this.category}}                    
+                    <h4>Bài đăng chuyên mục: {{this.category.CName}}</h4>
+                    <a class="btn btn-outline-light" href="/admin/posts/cat/{{this.category.CID}}/post" role="button">
+                        <i class="fa fa-plus" aria-hidden="true"></i> Viết bài
+                    </a>
+                {{else}}
+                    {{#if this.subcategory}}
+                        <h4>Bài đăng chuyên mục: {{this.subcategory.SCName}}</h4>
+                        <a class="btn btn-outline-light" href="/admin/posts/subcat/{{this.subcategory.SCID}}/post" role="button">
+                            <i class="fa fa-plus" aria-hidden="true"></i> Viết bài
+                        </a>
+                    {{else}}
+                        <h4>Tất cả bài đăng</h4>
+                    {{/if}}
+                {{/if}}
+
+           
+        </div>
+        {{#if this.empty}}
+        <div class="card-body">
+            <p class="card-text">Không có dữ liệu.</p>
+        </div>
+        {{else}}
+        </div>
+        <table class="table table-hover">
+            <thead class="bg-light text-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Bài viết</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each this.post}}
+                <td>{{PostID}}</td>
+                <td>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <img src="/public/images/avatarPost/{{PostID}}.png" alt="" width="120px" height="100px">
+                    </div>
+                    <div class="col-sm-6">
+                        <strong>{{PostTitle}}</strong><br/>
+                <span class="badge badge-pill badge-light text-secondary">{{CName}}{{SCName}}</span>
+                <span class="badge badge-pill badge-light text-secondary">Người đăng: {{UserName}}</span>
+                <span class="badge badge-pill badge-light text-secondary">{{Time}}</span>
+                <span class="badge badge-pill badge-light text-secondary">{{Duyetbai}}</span>
+                    </div>
+                    <div class="col-sm-4 text-right">
+                        <a href="/admin/posts/edit/{{PostID}}" class="btn btn-primary btn-sm"><i class="far fa-edit"></i></a>
+                    <a href="/admin/posts/{{PostID}}" class="btn btn-primary btn-sm"><i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="/admin/posts/upload/{{PostID}}" class="btn btn-primary btn-sm"><i class="fas fa-cloud-upload-alt"></i></a>
+                    <a href="/admin/posts/move/{{PostID}}" class="btn btn-primary btn-sm"><i class="fas fa-file-import"></i></a>
+                    {{#if buttonduyet}}
+                    <a href="/admin/posts/duyet/{{PostID}}" class="btn btn-primary btn-sm"><i class="far fa-check-circle"></i></a>
+                    {{/if}}
+                    </div>
+                </div>
+                
+                </td>
+             
+            </tr>
+            {{/each}}
+            </tbody>
+        </table>
+        {{/if}}
+    </div>
+</div>

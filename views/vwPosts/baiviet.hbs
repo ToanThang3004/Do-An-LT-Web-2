@@ -1,0 +1,22 @@
+{{#section 'title'}}{{this.rows.PostTitle}} - {{/section}}
+<div class="card">
+    <div class="card-header text-success"><strong>Admin Panel</strong></div>
+    <div class="card-body" style="padding-top: 5px; padding-bottom: 5px;">
+        <a href="/admin/posts/edit/{{this.rows.PostID}}" class="btn btn-primary btn-sm"><i class="far fa-edit"></i> Sửa</a>
+        <a href="/admin/posts/upload/{{this.rows.PostID}}" class="btn btn-primary btn-sm"><i class="fas fa-cloud-upload-alt"></i> Upload ảnh đại diện</a>
+        {{#if this.rows.buttonduyet}}
+            <a href="/admin/posts/duyet/{{this.rows.PostID}}" class="btn btn-primary btn-sm"><i class="far fa-check-circle"></i>Duyệt</a>
+        {{/if}}
+    </div>
+</div>
+<p></p>
+<div class="card">
+    <div class="card-body border-bottom"><h3>{{this.rows.PostTitle}}</h3>
+    <div class="text-secondary"><small><b>{{this.rows.UserName}} ({{this.rows.U_FullName}}), Theo <a class="text-dark" href="{{this.rows.linksource}}"><strong>{{this.rows.source}}</strong></a> &nbsp;&nbsp;<i class="far fa-clock"></i> {{this.rows.Time}}</b><span class="text-danger"> <strong>{{this.rows.Duyetbai}}</strong></span></small></div>
+    </div>
+    <div class="card-body"><strong>{{this.rows.SumContent}}</strong>
+    <p></p>
+    {{{this.rows.Content}}}
+    <div class="text-right">Theo <a class="text-dark" href="{{this.rows.linksource}}"><strong>{{this.rows.source}}</strong></a></div>
+    </div>
+</div>

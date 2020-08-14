@@ -1,0 +1,22 @@
+<div class="card">
+    <div class="card-header text-success">
+        <p>Di chuyển bài <a class="text-success" href="/admin/posts/{{this.post.PostID}}">
+        <strong>{{this.post.PostTitle}}</strong></a></p>
+        Chuyên mục hiện tại: 
+        <strong><a href="/admin/posts/cat/{{this.cate_post.CID}}" class="text-success">
+        {{this.cate_post.CName}}</a></strong> /    
+        <strong><a href="admin/posts/subcat/{{this.sub_post.SCID}}" class="text-success">
+        {{this.sub_post.SCName}}</a></strong>
+    </div>
+    <div class="card-header">
+        Chọn chuyên mục mà bạn muốn di chuyển bài viết
+    </div>
+    <div class="card-body">
+        {{#each this.category}}
+            <div class="form-group border-bottom"><a href="/admin/posts/move/{{PID}}/tocat/{{CID}}" class="text-dark"><strong>{{CName}}</strong></a></div>
+            {{#each subcategories}}
+            <div class="form-group"><a href="/admin/posts/move/{{PID}}/tosub/{{SCID}}" class="text-dark">{{SCName}}</a></div>
+            {{/each}}
+        {{/each}}
+    </div>
+</div>
