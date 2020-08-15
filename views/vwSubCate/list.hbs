@@ -1,0 +1,62 @@
+{{#section 'title'}}Quản lý chuyên mục {{this.category.CName}} - {{/section}}
+
+<div class="row">
+    <div class="col-sm-3">
+        <div class="card ">
+            <div class="card-header bg-success text-light">Admin Panel</div>
+            <div class="list-group">
+                <a href="/admin/categories" class="list-group-item list-group-item-action" ><i class="fas fa-arrow-circle-right"> Quản lý chuyên mục</i></a>
+                <a href="/admin/posts" class="list-group-item list-group-item-action" ><i class="fas fa-arrow-circle-right"> Quản lý bài đăng</i></a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-9">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between bg-success text-light">
+                <h4>{{this.category.CName}}</h4>
+                <a class="btn btn-outline-light" href="/admin/subcategories/{{this.category.CID}}/add" role="button">
+                <i class="fa fa-plus" aria-hidden="true"></i> Thêm chuyên mục lớn
+                </a>
+        </div>
+        {{#if this.empty}}
+        <div class="card-body">
+            <p class="card-text">Không có dữ liệu.</p>
+        </div>
+        {{else}}
+        </div>
+        <table class="table table-hover">
+            <thead class="bg-light text-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Tên chuyên mục nhỏ</th>
+                <th scope="col">&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each this.categories}}
+            {{#if Xoa}}
+            <tr class="bg-danger">
+            {{else}}
+            <tr>
+            {{/if}}
+                <td>{{SCID}}</td>
+                <td>{{SCName}}</td>
+                <td class="text-right">
+                    <a href="/admin/subcategories/edit/{{SCID}}" class="btn btn-primary btn-sm"><i class="far fa-edit"></i></a>
+                    
+                    {{#if Xoa}}
+                    <a href="/admin/subcategories/restore/{{SCID}}" class="btn btn-success btn-sm"><i class="fas fa-trash-restore"></i></a>
+                    {{else}}
+                    <a href="/admin/subcategories/del/{{SCID}}" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></a>
+                    {{/if}}
+
+
+                </td>
+            </tr>
+           
+            {{/each}}
+            </tbody>
+        </table>
+        {{/if}}
+    </div>
+</div>
