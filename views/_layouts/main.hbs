@@ -20,9 +20,9 @@
     </div>
     <div class="col-sm-6" style="margin: auto;">
     <center>
-    <form class="form-inline" action="/action_page.php">
-    <input class="form-control mr-sm-2" type="text" placeholder="Search" style="
-    width: 426px;">    
+    <form class="form-inline" action="/search" method="POST">
+    <input class="form-control mr-sm-2" type="text" name="search" id="search" placeholder="Nhập nội dung tìm kiếm" style="
+    width: 426px;" required>    
     <button class="btn btn-success" type="submit"><i class="fas fa-search"></i></button>
     </form>
     </center></div>
@@ -30,9 +30,14 @@
     {{#if lcIsAuthenticated}}     
         <div class="btn-group">
             <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-user"> {{lcAuthUser.UserName}}</i>
+                <img src="/public/images/noavatar.jpg" height="24" width="24" class="rounded-circle" alt="">
+                {{lcAuthUser.UserName}}
             </button>
             <div class="dropdown-menu dropdown-menu-right">
+                <div class="dropdown-item border-bottom">
+                    <i class="far fa-money-bill-alt"></i> {{lcAuthUser.tien}} VNĐ<br/>
+                    Tài khoản Premium
+                </div>
                 <a class="dropdown-item" href="/profile"><i class="far fa-address-card"></i> Cá nhân</a>
                 {{#if lcWriter}}
                     <a class="dropdown-item" href="/writerpanel"><i class="fas fa-user-cog"></i> Writer Panel</a>
@@ -41,7 +46,7 @@
                     <a class="dropdown-item" href="/editorpanel"><i class="fas fa-user-cog"></i> Editor Panel</a>
                 {{/if}}
                 {{#if lcAdmin}}
-                    <a class="dropdown-item" href="/admin"><i class="fas fa-user-cog"></i> Admin Panel</a>
+                    <a class="dropdown-item border-bottom" href="/admin"><i class="fas fa-user-cog"></i> Admin Panel</a>
                 {{/if}}
                 <a href="/dangxuat" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
 
