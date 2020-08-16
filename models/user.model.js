@@ -40,5 +40,36 @@ module.exports = {
     },
     single: async function (username) {
       return db.load(`select * from ${TBL_USERS} where username = ${username}`);
+    },
+    patch: function (entity) {
+      const condition = {
+        UserID: entity.UserID
+      }
+      delete entity.UserID;
+      return db.patch(TBL_USERS, entity, condition);
+    },
+    del: function (id) {
+      const condition = {
+        UserID: id
+      };
+      const d = {
+        Del: 1
+      };
+      return db.patch(TBL_USERS, d ,condition);
+    },
+    restore: function (id) {
+      const condition = {
+        UserID: id
+      };
+      const d = {
+        Del: 0
+      };
+      return db.patch(TBL_USERS, d ,condition);
+    },
+    del2: function (id) {
+    const condition = {
+      UserID: id
+    }
+    return db.del(TBL_USERS, condition);
     }
 };
