@@ -15,7 +15,7 @@
             <div class="card-header d-flex justify-content-between bg-success text-light">
                 <h4>{{this.category.CName}}</h4>
                 <a class="btn btn-outline-light" href="/admin/subcategories/{{this.category.CID}}/add" role="button">
-                <i class="fa fa-plus" aria-hidden="true"></i> Thêm chuyên mục lớn
+                <i class="fa fa-plus" aria-hidden="true"></i> Thêm chuyên mục 
                 </a>
         </div>
         {{#if this.empty}}
@@ -46,6 +46,8 @@
                     
                     {{#if Xoa}}
                     <a href="/admin/subcategories/restore/{{SCID}}" class="btn btn-success btn-sm"><i class="fas fa-trash-restore"></i></a>
+                    <a href="/admin/subcategories/delete/{{SCID}}" class="btn btn-danger btn-sm border-dark"><i class="fas fa-trash-alt"></i></a>
+                    
                     {{else}}
                     <a href="/admin/subcategories/del/{{SCID}}" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></a>
                     {{/if}}
