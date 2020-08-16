@@ -1,0 +1,94 @@
+{{#section 'title'}}{{this.post.PostTitle}} - {{/section}}
+{{#section 'js'}}
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+var js, fjs = d.getElementsByTagName(s)[0];
+if (d.getElementById(id)) return;
+js = d.createElement(s); js.id = id;
+js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+{{/section}}
+
+<p></p>
+<div class="card">
+    <div class="card-body border-bottom"><h3>{{this.post.PostTitle}}</h3>
+    <div class="text-secondary"><small><b>{{this.post.U_FullName}}, Theo <a class="text-dark" href="{{this.post.linksource}}"><strong>{{this.post.source}}</strong></a> &nbsp;&nbsp;<i class="far fa-clock"></i> {{this.post.Time}}</b><span class="text-danger"> <strong>{{this.rows.Duyetbai}}</strong></span></small></div>
+    <div class="fb-share-button" 
+data-href="http://localhost:3000/post/{{this.rows.PostID}}" 
+data-layout="button_count">
+</div>
+    </div>
+    <div class="card-body"><strong>{{this.post.SumContent}}</strong>
+    <p></p>
+    {{{this.post.Content}}}
+    <div class="text-right">Theo <a class="text-dark" href="{{this.post.linksource}}"><strong>{{this.post.source}}</strong></a></div>
+    </div>
+</div>
+<p></p>
+<div class="card">
+    <div class="card-body text-success border-bottom"><h4 class="tag">Bình luận</h4></div>
+    <div class="card-body">
+        {{#if lcIsAuthenticated}}     
+        <form method="POST">
+            <div class="form-group">
+            <textarea name="comment" id="txtComment" cols="150" rows="2" class="form-control"></textarea>
+            </div>             
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">Đăng</button>
+            </div>
+        </form>
+        {{else}}
+        <div class="text-center"><a href="/dangnhap">Đăng nhập</a> để bình luận</div>
+        {{/if}}
+    </div>
+    <div class="card-body border-top" id="comment">
+        {{#if this.comment}}
+        {{#each this.comment}}
+        <div class="row">
+            <div class="col-sm-1 text-center">
+                <img src="/public/images/noavatar.jpg" alt="noavatar" width="32px" height="32px">
+            </div>
+            <div class="col-sm-11" style="padding-left: 0px;">
+                <div style="background-color: #f2f3f5;padding-top: 5px;padding-right: 5px;padding-bottom: 5px;padding-left: 13px;border-radius: 18px;">
+                    <a href="/users/profile/{{UID}}"><strong>{{username}}</strong></a>
+                    {{Comment}}
+                </div>
+                <small style="
+    margin-left: 13px;
+"><a href="/comment/like/{{ComID}}">Thích</a> · <span class="text-muted">{{Time}}</span></small>
+            </div>
+        </div>
+        <p></p>
+        {{/each}}
+        {{else}}
+        <div class="text-center">Không có bình luận</div> 
+        {{/if}}
+    </div>
+</div>
+<p></p>
+<div class="card">
+    <div class="card-body text-success border-bottom"><h4 class="tag">Tin cùng chuyên mục</h4></div>
+    <div class="card-body">
+        {{#if this.empty}}
+            Không có tin nào
+        {{else}}
+        {{#each this.tincungchuyenmuc}}
+        <div class="row">
+        <div class="col-sm-2 text-center">
+            <img src="/public/images/avatarPost/{{PostID}}.png" alt="" class="rounded" width="160px" height="110px">
+        </div>
+        <div class="col-sm-5" style="padding-left: 0px;">
+            <a class="text-dark" href="/post/{{PostID}}"><h5>{{PostTitle}}</h5></a>
+            <p><a href="#" class="badge badge-light text-secondary">{{CName}}</a>  
+            <a href="#" class="badge badge-light text-secondary">{{SCName}}</a>
+            <span class="badge badge-light text-secondary">{{Time}}</span></p>
+        </div>
+        </div>
+        <p class="border-bottom" style="margin-top: 16px;"></p>
+
+        {{/each}}
+        {{/if}}
+    </div>
+  
+</div>

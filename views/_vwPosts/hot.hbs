@@ -1,0 +1,17 @@
+<div class="text-success chuyenmuc"><h5>TIN MỚI</h5></div>
+{{#each this.post}}
+<div class="row">
+    <div class="col-sm-2 text-center">
+        <img src="/public/images/avatarPost/{{PostID}}.png" alt="" class="rounded" width="160px" height="110px">
+    </div>
+    <div class="col-sm-5" style="padding-left: 0px;">
+        <a class="text-dark" href="/post/{{PostID}}"><h5>{{PostTitle}}</h5></a>
+        <p><a href="#" class="badge badge-light text-secondary">{{CName}}</a>  
+        <a href="#" class="badge badge-light text-secondary">{{SCName}}</a>
+        <span class="badge badge-light text-secondary">{{Time}}</span></p>
+    </div>
+</div>
+<p class="border-bottom" style="margin-top: 16px;"></p>
+
+
+{{/each}}
