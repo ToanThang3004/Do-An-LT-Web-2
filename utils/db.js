@@ -39,4 +39,16 @@ module.exports = {
       });
     });
   },
+  del: function (table, condition) {
+    return new Promise(function (resolve, reject) {
+      const sql = `delete from ${table} where ?`;
+      pool.query(sql, condition, function (error, results) {
+        if (error) {
+          return reject(error);
+        }
+
+        resolve(results);
+      });
+    });
+  }
 };
