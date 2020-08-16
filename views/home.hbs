@@ -1,0 +1,110 @@
+<div style="width:800px; height:400px; margin: auto;">
+<div id="demo" class="carousel slide" data-ride="carousel" style="width: 800px; height: 400px;">
+  <ul class="carousel-indicators">
+    <li data-target="#demo" data-slide-to="0" class="active"></li>
+    <li data-target="#demo" data-slide-to="1"></li>
+    <li data-target="#demo" data-slide-to="2"></li>
+    <li data-target="#demo" data-slide-to="3"></li>
+  </ul>
+  <div class="carousel-inner">
+    {{#each this.rows}}
+    <div class="carousel-item active">
+    <a href="/post/{{PostID}}">
+    <img src="/public/images/avatarPost/{{PostID}}.png" class="rounded" alt="{{PostTitle}}" width="800px" height="400px">
+    </a>
+    <div class="carousel-caption">
+        <a href="/post/{{PostID}}">
+        <h4 class="text-white" style="text-shadow: -1px 0 black, 0 2px black,      2px 0 black, 0 -1px black">{{PostTitle}}</h4>
+        </a>
+        <a href="/cat/{{CID}}"><span class="badge badge-pill badge-dark">{{CName}}</span></a>
+        <a href="/subcat/{{SCID}}"><span class="badge badge-pill badge-dark">{{SCName}}</span></a>
+      </div>   
+    </div>
+    {{/each}}
+    {{#each this.hot}}
+    <div class="carousel-item">
+    <a href="/post/{{PostID}}">
+    <img src="/public/images/avatarPost/{{PostID}}.png" class="rounded" alt="{{PostTitle}}" width="800px" height="400px">
+    </a>
+    <div class="carousel-caption">
+        <a href="/post/{{PostID}}">
+        <h4 class="text-white" style="text-shadow: -1px 0 black, 0 2px black,      2px 0 black, 0 -1px black">{{PostTitle}}</h4>
+        </a>
+        <a href="/cat/{{CID}}"><span class="badge badge-pill badge-dark">{{CName}}</span></a>
+        <a href="/subcat/{{SCID}}"><span class="badge badge-pill badge-dark">{{SCName}}</span></a>
+
+      </div>   
+    </div>
+    {{/each}}
+  </div>
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+</div>
+</div>
+<div class="row" style="margin-top: 50px;">
+    <div class="col-sm-6" >
+        <div class="bg-light text-success chuyenmuc"><h5>Tin mới</h5></div>
+        <p></p>
+        <div class="row">
+        {{#each this.new10}}
+            <div class="col-sm-2" style="margin-bottom: 10px;"><img src="/public/images/avatarPost/{{PostID}}.png" alt="" width="60px" height="60px" class="rounded"></div>
+            <div class="col-sm-10"><a class="text-dark" href="/post/{{PostID}}"><h6 style="padding-left: 7px;">{{PostTitle}}</h6></a>
+            <a href="/cat/{{CID}}"><span class="badge badge-pill badge-light text-secondary">{{CName}}</span></a>
+        <a href="/subcat/{{SCID}}"><span class="badge badge-pill badge-light text-secondary">{{SCName}}</span></a>
+        <span class="badge badge-pill badge-light text-secondary">{{Time}}</span>
+        {{#if Pre}}
+        <span class="badge badge-pill badge-danger text-white">Bài viết Premium</span>
+        {{/if}}
+            </div>
+        {{/each}}    
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="bg-light text-success chuyenmuc"><h5>Tin nóng</h5></div>
+        <p></p>
+        <div class="row">
+        {{#each this.hot10}}
+            <div class="col-sm-2" style="margin-bottom: 10px;"><img src="/public/images/avatarPost/{{PostID}}.png" alt="" width="60px" height="60px" class="rounded"></div>
+            <div class="col-sm-10"><a class="text-dark" href="/post/{{PostID}}"><h6 style="padding-left: 7px;">{{PostTitle}}</h6></a>
+                      <a href="/cat/{{CID}}"><span class="badge badge-pill badge-light text-secondary">{{CName}}</span></a>
+        <a href="/subcat/{{SCID}}"><span class="badge badge-pill badge-light text-secondary">{{SCName}}</span></a>
+        <span class="badge badge-pill badge-light text-secondary">{{Time}}</span>
+        {{#if Pre}}
+          <span class="badge badge-pill badge-danger text-white">Bài viết Premium</span>
+        {{/if}}
+        </div>
+        {{/each}}    
+        </div>
+    </div>
+</div>
+<p></p>
+{{#each this.category}}
+  <div class="bg-light text-success chuyenmuc"><h4><a class="text-dark" href="/cat/{{CID}}">{{CName}}</a></h4></div>
+  <div class="container">
+  {{#each subcategory}}
+    <a class="text-dark" href="/subcat/{{SCID}}"><i class="far fa-bookmark"></i> {{SCName}}</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  {{/each}}
+  <p></p>
+  {{#each new}}
+  <div class="row">
+    <div class="col-sm-2 text-center">
+        <img src="/public/images/avatarPost/{{PostID}}.png" alt="" class="rounded" width="160px" height="110px">
+    </div>
+    <div class="col-sm-10" style="padding-left: 0px;">
+        <a class="text-dark" href="/post/{{PostID}}"><h5>{{PostTitle}}</h5></a>
+        {{SumContent}}<br/>
+        <a href="/cat/{{CID}}"><span class="badge badge-pill badge-light text-secondary">{{CName}}</span></a>
+        <a href="/subcat/{{SCID}}"><span class="badge badge-pill badge-light text-secondary">{{SCName}}</span></a>
+        <span class="badge badge-light text-secondary">{{Time}}</span></p>
+      
+    </div>
+</div>
+  {{/each}}
+  </div>
+  <p></p>
+
+{{/each}}
