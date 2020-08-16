@@ -2,7 +2,7 @@ const db = require('../utils/db');
 
 const TBL_CATEGORIES = 'categories';
 const TBL_SUBCATEGORIES = 'subcategories';
-
+const TBL_CATEGORYMANAGER = 'categorymanager';
 module.exports = {
   allforuser: function () {
     return db.load(`select * from ${TBL_CATEGORIES} where Xoa = 0`);
@@ -47,5 +47,14 @@ module.exports = {
       return null;
 
     return rows[0];
+  },
+  all2: function () {
+    return db.load(`select * from ${TBL_CATEGORIES} where Xoa = 0 and cid NOT IN (select cid from ${TBL_CATEGORYMANAGER})`);
+  },
+  del: function (id) {
+    const condition = {
+      CID: id
+    }
+    return db.del(TBL_CATEGORIES, condition);
   }
 };
