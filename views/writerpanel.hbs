@@ -1,0 +1,29 @@
+{{#section 'title'}}Quản lý bài đăng - {{/section}}
+
+<div class="row">
+    <div class="col-sm-3">
+    <div class="card">
+            <div class="card-header bg-success text-light">Xem bài theo chuyên mục</div>
+            <div class="list-group">
+                {{#if this.empty}} 
+                    <div class="card-body">Không có chuyên mục nào</div>
+                {{else}}
+                {{#each this.list}}
+                <a href="/admin/posts/cat/{{CID}}/post" class="list-group-item list-group-item-action" ><i class="fab fa-buffer"> {{CName}} </i></a>
+                {{/each}}
+                {{/if}}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-9">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between bg-success text-light">
+                <h4>Bài đăng của bạn</h4>
+                <a class="btn btn-outline-light" href="/writerpanel/post" role="button">
+                <i class="fa fa-plus" aria-hidden="true"></i> Viết bài
+                </a>           
+        </div>
+       
+    </div>
+</div>
