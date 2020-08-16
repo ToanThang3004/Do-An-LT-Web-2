@@ -16,7 +16,13 @@ module.exports = {
         return db.add(TBL_POSTS, entity);
     },
     singleByCID: function (cid) {
-        return db.load(`select * from ${TBL_POSTS} where CID = ${cid}`);
+      return db.load(`select * from ${TBL_POSTS} where CID = ${cid}`);
+    },
+    singleByCIDXuatBan: function (cid) {
+      return db.load(`select * from ${TBL_POSTS} where CID = ${cid} AND Duyet = 3 ORDER BY TimePost DESC`);
+    },
+    singleBySCIDXuatBan: function (id) {
+      return db.load(`select * from ${TBL_POSTS} where SCID = ${id} AND Duyet = 3 ORDER BY TimePost DESC`);
     },
     singleByCIDStatus: function (cid, status) {
         return db.load(`select * from ${TBL_POSTS} where CID = ${cid} and Duyet = ${status}`);
