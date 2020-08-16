@@ -42,5 +42,11 @@ module.exports = {
           Del: 0
         };
         return db.patch(TBL_SUBCATEGORIES, d ,condition);
+    },
+    del2: function (id) {
+      const condition = {
+        SCID: id
+      }
+      return db.del(TBL_SUBCATEGORIES, condition);
     }
 }
