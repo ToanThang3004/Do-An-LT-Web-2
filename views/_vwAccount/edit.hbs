@@ -1,0 +1,36 @@
+<div class="card">
+        <div class="card-header text-success"><strong>Chỉnh sửa Thông tin cá nhân</strong></div>
+        <form method="POST">
+    <div class="card-body">
+      <div class="form-row">
+        <div class="col-6">
+          <label for="Fullname">Họ và tên</label>
+        <input type="text" name="Fullname" id="Fullname" class="form-control" value="{{this.user.Fullname}}" >
+   
+      </div>
+          <div class="col-6">
+        <label for="Address">Địa chỉ</label>
+        <input type="text" name="Address" id="Address" class="form-control" value="{{this.user.Address}}" >
+   
+      </div>
+      </div>
+      <p></p>
+      <div class="form-row">
+        <div class="col-6">
+          <label for="Phone">Số điện thoại</label>
+          <input type="text" name="Phone" id="Phone" class="form-control" value="{{this.user.Phone}}">
+        </div>
+        <div class="col-6">
+          <label for="Email">Thư điện tử</label>
+          <input type="email" name="Email" id="Email" class="form-control" value="{{this.user.Email}}">
+        </div>
+      </div>
+      <p></p>
+      <div class="form-group">
+        <label for="F_DOB">Ngày sinh</label>
+        <input type="date" name="F_DOB" id="F_DOB" class="form-control" value="{{this.user.F_DOB}}">
+      </div>
+      <input type="submit" value="Lưu" class="btn btn-success">      </div>
+
+      </form></div>
+   

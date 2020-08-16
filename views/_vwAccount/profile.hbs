@@ -1,0 +1,87 @@
+{{#section "title"}} Thông tin cá nhân - {{/section}}
+<div class="card">
+    <div class="card-body bg-light">
+        <div class="row">
+            <div class="col-sm-1">
+                <img src="/public/images/noavatar.jpg" alt="" height="60" width="60" class="rounded-circle">
+            </div>
+            <div class="col-sm-10" style="padding-left: 0px;">
+                <font size="5px">{{this.user.UserName}}</font></br>
+                Số dư: {{this.user.tien}} VNĐ ·
+                    {{#if qUser}}
+                        Người dùng
+                    {{/if}}
+                     {{#if qWriter}}
+                        Phóng viên
+                    {{/if}}
+                     {{#if qEditor}}
+                        Biên tập viên
+                    {{/if}}
+                     {{#if qAdmin}}
+                        Quản trị viên
+                    {{/if}}
+                
+            </div>
+        </div>
+    </div>
+</div>
+{{#if naptien_success}}
+<p></p>
+<div class="alert alert-success" role="alert">
+  Bạn vừa nạp {{this.tienvuanap}} VNĐ vào tài khoản. 
+</div>
+{{/if}}
+{{#if edit_success}}
+<p></p>
+<div class="alert alert-success" role="alert">
+  Bạn vừa cập nhật thông tin cá nhân thành công.
+</div>
+{{/if}}
+<p> </p>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Thông tin cá nhân</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="naptien-tab" data-toggle="tab" href="#naptien" role="tab" aria-controls="naptien" aria-selected="false">Nạp tiền</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="premium-tab" data-toggle="tab" href="#premium" role="tab" aria-controls="premium" aria-selected="false">Đăng kí Premium</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active card card-body" id="home" role="tabpanel" aria-labelledby="home-tab">
+    <p><label for="FullName">Họ tên: </label>
+    {{this.user.Fullname}}</p>
+    <p><label for="Phone">Số điện thoại: </label>
+    {{this.user.Phone}}</p>
+    <p><label for="Email">Thư điện tử: </label>
+    {{this.user.Email}}</p>
+    <p><label for="Address">Địa chỉ: </label>
+    {{this.user.Address}}</p>
+    <p><label for="DOB">Ngày sinh: </label>
+    {{this.user.F_DOB}}</p>
+    <a href="/profile/edit" class="btn btn-success">Chỉnh sửa thông tin</a>
+
+  </div>
+  <div class="tab-pane fade card card-body" id="naptien" role="tabpanel" aria-labelledby="naptien-tab">
+    <form action="/naptien" method="post">
+      <label for="txtTien">Nhập số tiền bạn muốn nạp vào tài khoản: </label>
+      <input type="number" name="tien" id="txtTien" class="form-control">
+      <p></p>
+      <input type="submit" value="Nạp" class="btn btn-success">
+
+    </form>
+  </div>
+  <div class="tab-pane fade card card-body" id="premium" role="tabpanel" aria-labelledby="premium-tab">
+   <strong> Dịch vụ đăng kí tài khoản Premium </strong><br/>
+   Quyền lợi Premium: <br/>
+   + Xem bài viết Premium<br/>
+    <strong>Hạn sử dụng: 7 ngày</strong>
+   <br/>
+   ...
+   <p></p>
+   <a href="/premium" class="btn btn-success">Đăng kí Premium</a>
+   <a href="/profile" class="btn btn-danger">Quay lại</a>
+  </div>
+</div>
