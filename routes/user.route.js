@@ -1,6 +1,7 @@
 const express = require('express');
 const userModel = require('../models/user.model');
 const bcrypt = require('bcryptjs');
+const utilsModel = require('../models/utils.model');
 
 const router = express.Router();
 
@@ -55,5 +56,24 @@ router.post('/dangky', async function (req, res) {
     }
 });
 
+router.get('/premium', async function (req, res) {
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var datetime = date+" "+time;
+    today.setDate(today.getDate() + 7);
+    var date1 = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var time1 = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var datetime1 = date1+" "+time1;
+    const entity = {
+        UserID: req.user.UserID,
+        HSD: 7,
+        Premium: 1,
+        NgayDKPremium: datetime,
+        NgayHHPremium: datetime1
+    }
+    await userModel.patch(entity)
+    res.redirect('/profile')
+})
 
 module.exports = router;
