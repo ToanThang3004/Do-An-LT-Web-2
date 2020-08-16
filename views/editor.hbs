@@ -1,0 +1,269 @@
+{{#section 'title'}}Quản lý bài đăng - {{/section}}
+
+<div class="row">
+    <div class="col-sm-3">
+    <div class="card">
+            <div class="card-header bg-success text-light">Chuyên mục bạn quản lí</div>
+            <div class="list-group">
+                {{#each this.categoryManager}}
+                <a href="/admin/posts/cat/{{CID}}/post" class="list-group-item list-group-item-action" ><i class="fab fa-buffer"> {{CName}} </i></a>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-9">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between bg-success text-light">
+                <h4>Bài đăng</h4>
+            </div>
+      
+        
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Tất cả bài đăng</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="chuaduyet-tab" data-toggle="tab" href="#chuaduyet" role="tab" aria-controls="chuaduyet" aria-selected="false">Chưa được duyệt</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="tuchoi-tab" data-toggle="tab" href="#tuchoi" role="tab" aria-controls="tuchoi" aria-selected="false">Bị từ chối</a>
+  </li>
+    <li class="nav-item">
+    <a class="nav-link" id="choxuatban-tab" data-toggle="tab" href="#choxuatban" role="tab" aria-controls="choxuatban" aria-selected="false">Đang chờ xuất bản</a>
+  </li>
+    <li class="nav-item">
+    <a class="nav-link" id="xuatban-tab" data-toggle="tab" href="#xuatban" role="tab" aria-controls="xuatban" aria-selected="false">Đã xuất bản</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active card card-body" style="padding: 0px" id="home" role="tabpanel" aria-labelledby="home-tab">
+      {{#if this.empty}}
+        <div class="card-body">
+            <p class="card-text">Không có dữ liệu.</p>
+        </div>
+        {{else}}
+  <table class="table table-hover">
+            <thead class="bg-light text-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Bài viết</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each this.categoryManager}}
+
+            {{#each post}}
+                <td>{{PostID}}</td>
+                <td>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <img src="/public/images/avatarPost/{{PostID}}.png" alt="" width="120px" height="100px">
+                    </div>
+                    <div class="col-sm-6">
+                        <strong>{{PostTitle}}</strong><br/>
+                <span class="badge badge-pill badge-light text-secondary">{{CName}}{{SCName}}</span>
+                <span class="badge badge-pill badge-light text-secondary">{{Time}}</span>
+                <span class="badge badge-pill badge-light text-secondary">{{StatusPost}}</span>
+                <span class="badge badge-pill badge-light text-secondary">{{F_TimePublic}}</span>
+                {{#if Reason}}
+                    <span class="badge badge-pill badge-light text-secondary">Lí do: {{Reason}}</span>
+                {{/if}}
+                    </div>
+                    <div class="col-sm-4 text-right">
+                    <a href="/admin/posts/move/{{PostID}}" class="btn btn-primary btn-sm"><i class="fas fa-file-import"></i></a>
+                    <a href="/admin/posts/status/{{PostID}}" class="btn btn-primary btn-sm"><i class="fas fa-clipboard-check"></i></a>
+                    <a href="/post/{{PostID}}" class="btn btn-primary btn-sm"><i class="fas fa-arrow-circle-right"></i></a>
+
+                    </div>
+                </div>
+                </td>
+            </tr>
+            {{/each}}
+            {{/each}}
+            </tbody>
+        </table>
+        {{/if}}
+  </div>
+  <div class="tab-pane fade card card-body" style="padding: 0px" id="chuaduyet" role="tabpanel" aria-labelledby="chuaduyet-tab">
+     {{#if this.empty}}
+        <div class="card-body">
+            <p class="card-text">Không có dữ liệu.</p>
+        </div>
+        {{else}}
+  <table class="table table-hover">
+            <thead class="bg-light text-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Bài viết</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each this.categoryManager}}
+
+            {{#each postchuaduyet}}
+                <td>{{PostID}}</td>
+                <td>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <img src="/public/images/avatarPost/{{PostID}}.png" alt="" width="120px" height="100px">
+                    </div>
+                    <div class="col-sm-6">
+                        <strong>{{PostTitle}}</strong><br/>
+                <span class="badge badge-pill badge-light text-secondary">{{CName}}{{SCName}}</span>
+                <span class="badge badge-pill badge-light text-secondary">{{Time}}</span>
+                <span class="badge badge-pill badge-light text-secondary">{{StatusPost}}</span>
+                <span class="badge badge-pill badge-light text-secondary">{{F_TimePublic}}</span>
+                {{#if Reason}}
+                    <span class="badge badge-pill badge-light text-secondary">Lí do: {{Reason}}</span>
+                {{/if}}
+                    </div>
+                    <div class="col-sm-4 text-right">
+                    <a href="/admin/posts/move/{{PostID}}" class="btn btn-primary btn-sm"><i class="fas fa-file-import"></i></a>
+                    <a href="/admin/posts/status/{{PostID}}" class="btn btn-primary btn-sm"><i class="fas fa-clipboard-check"></i></a>
+                    <a href="/post/{{PostID}}" class="btn btn-primary btn-sm"><i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                </td>
+            </tr>
+            {{/each}}
+            {{/each}}
+            </tbody>
+        </table>
+        {{/if}}
+  </div>
+  <div class="tab-pane fade" id="tuchoi" role="tabpanel" aria-labelledby="tuchoi-tab">
+        {{#if this.empty}}
+        <div class="card-body">
+            <p class="card-text">Không có dữ liệu.</p>
+        </div>
+        {{else}}
+  <table class="table table-hover">
+            <thead class="bg-light text-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Bài viết</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each this.categoryManager}}
+
+            {{#each posttuchoi}}
+                <td>{{PostID}}</td>
+                <td>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <img src="/public/images/avatarPost/{{PostID}}.png" alt="" width="120px" height="100px">
+                    </div>
+                    <div class="col-sm-6">
+                        <strong>{{PostTitle}}</strong><br/>
+                <span class="badge badge-pill badge-light text-secondary">{{CName}}{{SCName}}</span>
+                <span class="badge badge-pill badge-light text-secondary">{{Time}}</span>
+                <span class="badge badge-pill badge-light text-secondary">{{StatusPost}}</span>
+                <span class="badge badge-pill badge-light text-secondary">{{F_TimePublic}}</span>
+                {{#if Reason}}
+                    <span class="badge badge-pill badge-light text-secondary">Lí do: {{Reason}}</span>
+                {{/if}}
+                    </div>
+                    <div class="col-sm-4 text-right">
+                    <a href="/admin/posts/move/{{PostID}}" class="btn btn-primary btn-sm"><i class="fas fa-file-import"></i></a>
+                    <a href="/admin/posts/status/{{PostID}}" class="btn btn-primary btn-sm"><i class="fas fa-clipboard-check"></i></a>
+                    <a href="/post/{{PostID}}" class="btn btn-primary btn-sm"><i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                </td>
+            </tr>
+            {{/each}}
+            {{/each}}
+            </tbody>
+        </table>
+        {{/if}} 
+  </div>
+  <div class="tab-pane fade" id="choxuatban" role="tabpanel" aria-labelledby="choxuatban-tab">
+  <table class="table table-hover">
+            <thead class="bg-light text-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Bài viết</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each this.categoryManager}}
+
+            {{#each postchoxuatban}}
+                <td>{{PostID}}</td>
+                <td>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <img src="/public/images/avatarPost/{{PostID}}.png" alt="" width="120px" height="100px">
+                    </div>
+                    <div class="col-sm-6">
+                        <strong>{{PostTitle}}</strong><br/>
+                <span class="badge badge-pill badge-light text-secondary">{{CName}}{{SCName}}</span>
+                <span class="badge badge-pill badge-light text-secondary">{{Time}}</span>
+                <span class="badge badge-pill badge-light text-secondary">{{StatusPost}}</span>
+                <span class="badge badge-pill badge-light text-secondary">{{F_TimePublic}}</span>
+                {{#if Reason}}
+                    <span class="badge badge-pill badge-light text-secondary">Lí do: {{Reason}}</span>
+                {{/if}}
+                    </div>
+                    <div class="col-sm-4 text-right">
+                    <a href="/admin/posts/move/{{PostID}}" class="btn btn-primary btn-sm"><i class="fas fa-file-import"></i></a>
+                    <a href="/admin/posts/status/{{PostID}}" class="btn btn-primary btn-sm"><i class="fas fa-clipboard-check"></i></a>
+                    <a href="/post/{{PostID}}" class="btn btn-primary btn-sm"><i class="fas fa-arrow-circle-right"></i></a>                   
+                    </div>
+                </div>
+                </td>
+            </tr>
+            {{/each}}
+            {{/each}}
+            </tbody>
+        </table>
+   
+  </div>
+   <div class="tab-pane fade" id="xuatban" role="tabpanel" aria-labelledby="xuatban-tab">
+  <table class="table table-hover">
+            <thead class="bg-light text-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Bài viết</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each this.categoryManager}}
+
+            {{#each postdaxuatban}}
+                <td>{{PostID}}</td>
+                <td>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <img src="/public/images/avatarPost/{{PostID}}.png" alt="" width="120px" height="100px">
+                    </div>
+                    <div class="col-sm-6">
+                        <strong>{{PostTitle}}</strong><br/>
+                <span class="badge badge-pill badge-light text-secondary">{{CName}}{{SCName}}</span>
+                <span class="badge badge-pill badge-light text-secondary">{{Time}}</span>
+                <span class="badge badge-pill badge-light text-secondary">{{StatusPost}}</span>
+                <span class="badge badge-pill badge-light text-secondary">{{F_TimePublic}}</span>
+                {{#if Reason}}
+                    <span class="badge badge-pill badge-light text-secondary">Lí do: {{Reason}}</span>
+                {{/if}}
+                    </div>
+                    <div class="col-sm-4 text-right">
+                    <a href="/admin/posts/move/{{PostID}}" class="btn btn-primary btn-sm"><i class="fas fa-file-import"></i></a>
+                    <a href="/admin/posts/status/{{PostID}}" class="btn btn-primary btn-sm"><i class="fas fa-clipboard-check"></i></a>
+                    <a href="/post/{{PostID}}" class="btn btn-primary btn-sm"><i class="fas fa-arrow-circle-right"></i></a>
+                    
+                    </div>
+                </div>
+                </td>
+            </tr>
+            {{/each}}
+            {{/each}}
+            </tbody>
+        </table>
+       
+  </div>
+    
+    </div>
+</div>
