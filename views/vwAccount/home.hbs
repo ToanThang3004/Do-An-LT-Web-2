@@ -1,0 +1,73 @@
+{{#section 'title'}}Quản lý người dùng - {{/section}}
+
+<div class="row">
+    <div class="col-sm-3">
+        <div class="card">
+            <div class="card-header bg-success text-light">Admin Panel</div>
+            <div class="list-group">
+                <a href="/admin/categories" class="list-group-item list-group-item-action" ><i class="fas fa-arrow-circle-right"> Quản lý chuyên mục</i></a>
+                <a href="/admin/posts" class="list-group-item list-group-item-action" ><i class="fas fa-arrow-circle-right"> Quản lý bài đăng</i></a>
+            </div>
+                    </div>
+    </div>
+    
+    <div class="col-sm-9">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between bg-success text-light">
+                <h4>Danh sách người dùng</h4>
+            </div>
+        {{#if this.empty}}
+        <div class="card-body">
+            <p class="card-text">Không có dữ liệu.</p>
+        </div>
+        {{else}}
+        </div>
+        <table class="table table-hover">
+            <thead class="bg-light text-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Thông tin</th>
+            </tr>
+            </thead>
+            {{#each this.user}}
+            {{#if Delete}}
+            <tbody class="bg-danger">
+            {{else}}
+            <tbody>
+            {{/if}}
+
+                <td>{{UserID}}</td>
+                <td>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <img src="/public/images/noavatar.jpg" alt="" width="120px" height="100px">
+                    </div>
+                    <div class="col-sm-6">
+                        <strong>{{UserName}} ({{Fullname}})</strong><br/>
+                <span class="badge badge-pill badge-light text-secondary">SDT: {{Phone}}</span>
+                <span class="badge badge-pill badge-light text-secondary">Email: {{Email}}</span>
+                <span class="badge badge-pill badge-light text-secondary">Địa chỉ: {{Address}}</span>
+                <span class="badge badge-pill badge-light text-secondary">Ngày sinh: {{F_DOB}}</span>
+                <span class="badge badge-pill badge-light text-secondary">Còn {{HSD}} ngày</span>
+                <span class="badge badge-pill badge-light text-secondary">{{ChucVu}}</span>
+
+                    </div>
+                    <div class="col-sm-4 text-right">
+                    <a href="/admin/users/edit/{{UserID}}" class="btn btn-primary btn-sm"><i class="fas fa-user-cog"></i>   </a>
+                    {{#if Delete}}
+                    <a href="/admin/users/restore/{{UserID}}" class="btn btn-success btn-sm"><i class="fas fa-trash-alt"></i></a>
+                    <a href="/admin/users/delete/{{UserID}}" class="btn btn-danger btn-sm border-dark"><i class="fas fa-trash-alt"></i></a>
+                    {{else}}
+                    <a href="/admin/users/del/{{UserID}}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                    {{/if}}
+                    </div>
+                </div>
+                
+                </td>
+             
+            </tr>
+            {{/each}}
+            </tbody>
+        </table>
+        {{/if}}
+    </div></div>
