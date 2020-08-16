@@ -21,6 +21,7 @@ router.get('/', async function (req, res) {
             const uid_post = await userModel.singleByUserID(post[i].UID);
             post[i].UserName = uid_post.UserName;
             if (post[i].xoa === 1) { post[i].Delete = true; } 
+            if (post[i].Premium === 1) { post[i].Pre = true; } 
         }
         const post_ChuaDuyet = await postModel.allByStatus(0);
         for (var i = 0; i < post_ChuaDuyet.length; i++) {
@@ -32,6 +33,8 @@ router.get('/', async function (req, res) {
             const uid_post = await userModel.singleByUserID(post_ChuaDuyet[i].UID);
             post_ChuaDuyet[i].UserName = uid_post.UserName;
             if (post_ChuaDuyet[i].xoa === 1) { post_ChuaDuyet[i].Delete = true; } 
+            if (post_ChuaDuyet[i].Premium === 1) { post_ChuaDuyet[i].Pre = true; } 
+
         }
         const post_TuChoi = await postModel.allByStatus(1);
         for (var i = 0; i < post_TuChoi.length; i++) {
@@ -43,6 +46,7 @@ router.get('/', async function (req, res) {
             const uid_post = await userModel.singleByUserID(post_TuChoi[i].UID);
             post_TuChoi[i].UserName = uid_post.UserName;
             if (post_TuChoi[i].xoa === 1) { post_TuChoi[i].Delete = true; } 
+            if (post_TuChoi[i].Premium === 1) { post_TuChoi[i].Pre = true; } 
         }
         const post_ChoXuatBan = await postModel.allByStatus(2);
         for (var i = 0; i < post_ChoXuatBan.length; i++) {
@@ -54,6 +58,7 @@ router.get('/', async function (req, res) {
             const uid_post = await userModel.singleByUserID(post_ChoXuatBan[i].UID);
             post_ChoXuatBan[i].UserName = uid_post.UserName;
             if (post_ChoXuatBan[i].xoa === 1) { post_ChoXuatBan[i].Delete = true; } 
+            if (post_ChoXuatBan[i].Premium === 1) { post_ChoXuatBan[i].Pre = true; } 
         }
         const post_XuatBan = await postModel.allByStatus(3);
         for (var i = 0; i < post_XuatBan.length; i++) {
@@ -65,6 +70,7 @@ router.get('/', async function (req, res) {
             const uid_post = await userModel.singleByUserID(post_XuatBan[i].UID);
             post_XuatBan[i].UserName = uid_post.UserName;
             if (post_XuatBan[i].xoa === 1) { post_XuatBan[i].Delete = true; } 
+            if (post_XuatBan[i].Premium === 1) { post_XuatBan[i].Pre = true; } 
         }
 
         res.render('vwPosts/home', {
@@ -233,7 +239,7 @@ router.get('/edit/:id', async function (req, res) {
     const id = +req.params.id || -1;
     const rows = await postModel.singleByPostID(id);
     const post = rows[0];
-    if (req.isAuthenticated() && (req.user.Permission === 1 || req.user.Permission === 3) && (post.Duyet === 0 || post.Duyet === 1)) {
+    if (req.isAuthenticated() && ((req.user.Permission ===1 && (post.Duyet === 0 || post.Duyet ===1)) || req.user.Permission === 3)) {
         const category = await categoryModel.singleByCID(post.CID);
         const sub = await subcategoryModel.single2(post.SCID);
         const subcategory = sub[0];
@@ -241,7 +247,9 @@ router.get('/edit/:id', async function (req, res) {
         post.SCName = subcategory.SCName;
 
         res.render('vwPosts/edit', {
-            post
+            post,
+            Premium: post.Premium === 1,
+            qAdmin: req.user.Permission === 3
         });
     } else {
         res.redirect('/')
