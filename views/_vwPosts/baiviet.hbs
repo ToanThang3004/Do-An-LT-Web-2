@@ -11,6 +11,11 @@ fjs.parentNode.insertBefore(js, fjs);
 {{/section}}
 
 <p></p>
+{{#if premium}}
+<div class="alert alert-danger" role="alert">
+  Bài viết chỉ dành cho tài khoản Premium
+</div>
+{{else}}
 <div class="card">
     <div class="card-body border-bottom"><h3>{{this.post.PostTitle}}</h3>
     <div class="text-secondary"><small><b>{{this.post.U_FullName}}, Theo <a class="text-dark" href="{{this.post.linksource}}"><strong>{{this.post.source}}</strong></a> &nbsp;&nbsp;<i class="far fa-clock"></i> {{this.post.Time}}</b><span class="text-danger"> <strong>{{this.rows.Duyetbai}}</strong></span></small></div>
@@ -92,3 +97,4 @@ data-layout="button_count">
     </div>
   
 </div>
+{{/if}}

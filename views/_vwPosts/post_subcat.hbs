@@ -1,6 +1,5 @@
-<div class="bg-light text-success chuyenmuc"><h5>{{this.subcategory.SCName}}</h5>
+<div class="bg-light text-success chuyenmuc"><h4>{{this.subcategory.SCName}}</h4>
 </div>
-
 
 
 {{#each this.post}}
@@ -8,12 +7,19 @@
     <div class="col-sm-2 text-center">
         <img src="/public/images/avatarPost/{{PostID}}.png" alt="" class="rounded" width="160px" height="110px">
     </div>
-    <div class="col-sm-5" style="padding-left: 0px;">
+    <div class="col-sm-10" style="padding-left: 0px;">
         <a class="text-dark" href="/post/{{PostID}}"><h5>{{PostTitle}}</h5></a>
-        <span class="badge badge-light text-secondary">{{Time}}</span></p>
-    </div>
+        {{SumContent}}<br/>
+        <a href="/cat/{{CID}}"><span class="badge badge-pill badge-light text-secondary">{{CName}}</span></a>
+        <a href="/subcat/{{SCID}}"><span class="badge badge-pill badge-light text-secondary">{{SCName}}</span></a>
+        <span class="badge badge-light text-secondary">{{Time}}</span>
+        {{#if Pre}}
+          <span class="badge badge-pill badge-danger text-white">Bài viết Premium</span>
+        {{/if}}
+    </div></p>
 </div>
 <p class="border-bottom" style="margin-top: 16px;"></p>
 
 
 {{/each}}
+

@@ -12,6 +12,9 @@
         <a class="text-dark" href="/post/{{PostID}}"><h5>{{PostTitle}}</h5></a>
         <a href="#" class="badge badge-light text-secondary">{{SCName}}</a>
         <span class="badge badge-light text-secondary">{{Time}}</span></p>
+        {{#if Pre}}
+          <span class="badge badge-pill badge-danger text-white">Bài viết Premium</span>
+        {{/if}}
     </div>
 </div>
 <p class="border-bottom" style="margin-top: 16px;"></p>
